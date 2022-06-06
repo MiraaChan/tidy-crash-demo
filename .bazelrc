@@ -1,0 +1,28 @@
+build --enable_platform_specific_config
+
+build:linux  --config=gcc
+build:linux  --linkopt="-lpthread"
+build:linux  --linkopt="-ldl"
+build:linux  --features=-default_compile_flags
+
+build --show_timestamps
+# Do not show warnings from external dependencies.
+build --output_filter="^//"
+
+# For Linux build options
+build --color=yes
+build --copt='-DEIGEN_USE_THREADS'
+
+build:gcc --repo_env=CC=gcc
+build:gcc --host_cxxopt="-std=c++17"
+build:gcc --cxxopt='-std=c++17'
+build:gcc --cxxopt='-fsized-deallocation'
+build:gcc --cxxopt='-Wno-unused-parameter'
+build:gcc --cxxopt='-faligned-new'
+build:gcc --cxxopt='-Wno-invalid-offsetof'
+build:gcc --copt='-fdiagnostics-color=always'
+build:gcc --copt='-Wall'
+build:gcc --copt='-Wextra'
+
+build:clang-tidy --aspects //third_party/clang_tidy:clang-tidy.bzl%clang_tidy_aspect
+build:clang-tidy --output_groups=report
