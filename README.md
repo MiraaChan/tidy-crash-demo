@@ -23,6 +23,6 @@ bazel build --config=clang-tidy //crash:CrashTest
 
 Preprocessed output:
 ```
-bazel build --save_temps --keep_going --config=clang-tidy  //crash:CrashTest
+bazel build --save_temps --keep_going //crash:CrashTest
 ```
 
